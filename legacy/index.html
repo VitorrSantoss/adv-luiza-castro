@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Luiza de Castro | Advogada Trabalhista</title>
+  <meta name="description" content="Luiza de Castro, advogada trabalhista OAB/PE. Orientação sobre rescisão, horas extras, vínculo empregatício (PJ) e demais demandas trabalhistas. Atendimento online e presencial em Recife/PE." />
+  <meta name="theme-color" content="#F5E6E3" />
+  <meta property="og:title" content="Luiza de Castro | Advogada Trabalhista" />
+  <meta property="og:description" content="Te ajudo com a sua demanda jurídica." />
+  <meta property="og:image" content="foto.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --rose: #C9A39B;
+      --rose-deep: #9E6F65;   /* rosé escurecido para texto (AA sobre off-white) */
+      --blush: #F5E6E3;
+      --offwhite: #FAF7F5;
+      --ink: #1A1A1A;
+      --ink-soft: #4A4240;    /* texto secundário (AA) */
+      --gold: #B8956A;
+      --gold-deep: #85663F;   /* dourado para texto pequeno (AA) */
+      --line: rgba(184, 149, 106, .35);
+      --shadow-sm: 0 1px 2px rgba(26, 26, 26, .04), 0 4px 14px rgba(158, 111, 101, .08);
+      --shadow-md: 0 2px 4px rgba(26, 26, 26, .05), 0 12px 28px rgba(158, 111, 101, .16);
+      --radius: 18px;
+      --serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+      --sans: "Inter", "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --script: "Pinyon Script", cursive;
+      --ease: cubic-bezier(.22, .61, .36, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink);
+      background:
+        radial-gradient(120% 60% at 50% 0%, var(--blush) 0%, rgba(245, 230, 227, 0) 70%),
+        var(--offwhite);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    :focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
+      border-radius: 10px;
+    }
+
+    .page {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: calc(48px + env(safe-area-inset-top)) 20px calc(40px + env(safe-area-inset-bottom));
+    }
+
+    /* ---------- Header ---------- */
+    .header { text-align: center; }
+
+    .avatar {
+      position: relative;
+      width: 116px;
+      height: 116px;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(140deg, var(--gold), var(--rose) 55%, var(--gold));
+      box-shadow: var(--shadow-md);
+    }
+    .avatar .frame,
+    .avatar .monogram {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 3px solid var(--offwhite);
+      display: block;
+      overflow: hidden;
+      background: var(--blush);
+    }
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      /* foto já recortada no rosto; zoom leve para preencher o círculo */
+      transform: scale(1.12);
+      transform-origin: 50% 32%;
+    }
+    .avatar .monogram {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 38px;
+      font-weight: 500;
+      color: var(--rose-deep);
+      letter-spacing: .04em;
+    }
+    .avatar.no-photo .frame { display: none; }
+    .avatar.no-photo .monogram { display: flex; }
+
+    .name {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 34px;
+      line-height: 1.1;
+      margin: 0;
+      letter-spacing: .01em;
+    }
+    .name .script {
+      font-family: var(--script);
+      font-weight: 400;
+      font-size: 1.15em;
+      color: var(--rose-deep);
+      padding: 0 .06em;
+    }
+
+    .role {
+      margin: 10px 0 0;
+      font-size: 11.5px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      color: var(--gold-deep);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 16px auto;
+      color: var(--gold);
+    }
+    .divider::before, .divider::after {
+      content: "";
+      width: 44px;
+      height: 1px;
+      background: var(--line);
+    }
+    .divider svg { width: 8px; height: 8px; }
+
+    .tagline {
+      margin: 0;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 20px;
+      color: var(--ink-soft);
+    }
+
+    .credential {
+      margin: 8px 0 0;
+      font-size: 12.5px;
+      color: var(--ink-soft);
+    }
+
+    /* ---------- Links ---------- */
+    .links {
+      list-style: none;
+      margin: 32px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-height: 60px;
+      padding: 12px 18px 12px 12px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      background: #fff;
+      border: 1px solid rgba(201, 163, 155, .35);
+      box-shadow: var(--shadow-sm);
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease),
+                  background-color .25s var(--ease), border-color .25s var(--ease);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn .icon {
+      flex: none;
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--blush);
+      color: var(--rose-deep);
+      transition: background-color .25s var(--ease), color .25s var(--ease);
+    }
+    .btn .icon svg { width: 19px; height: 19px; }
+    .btn .label { flex: 1; line-height: 1.35; }
+    .btn .sub {
+      display: block;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--ink-soft);
+      margin-top: 1px;
+    }
+    .btn .arrow {
+      flex: none;
+      width: 16px;
+      height: 16px;
+      color: var(--gold);
+      transition: transform .25s var(--ease);
+    }
+
+    @media (hover: hover) {
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+        background: var(--blush);
+        border-color: var(--rose);
+      }
+      .btn:hover .icon { background: #fff; }
+      .btn:hover .arrow { transform: translateX(3px); }
+    }
+    .btn:active {
+      transform: translateY(-1px) scale(.99);
+      background: var(--blush);
+      border-color: var(--rose);
+    }
+
+    /* CTA principal */
+    .btn--primary {
+      min-height: 72px;
+      padding: 14px 20px 14px 14px;
+      background: var(--ink);
+      color: var(--offwhite);
+      border: 1px solid var(--ink);
+      box-shadow: 0 2px 6px rgba(26,26,26,.12), 0 14px 30px rgba(26,26,26,.18);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn--primary::after {
+      /* brilho discreto */
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 35%, rgba(201,163,155,.18) 50%, transparent 65%);
+      transform: translateX(-100%);
+      animation: sheen 5s 1.6s var(--ease) infinite;
+      pointer-events: none;
+    }
+    .btn--primary .icon {
+      background: var(--rose);
+      color: var(--ink);
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+    }
+    .btn--primary .icon svg { width: 22px; height: 22px; }
+    .btn--primary .label { font-size: 16px; font-weight: 600; }
+    .btn--primary .sub { color: #D9CCC8; }
+    .btn--primary .arrow { color: var(--rose); }
+    @media (hover: hover) {
+      .btn--primary:hover {
+        background: #2A2422;
+        border-color: #2A2422;
+        box-shadow: 0 4px 10px rgba(26,26,26,.14), 0 18px 36px rgba(26,26,26,.22);
+      }
+      .btn--primary:hover .icon { background: var(--blush); }
+    }
+    .btn--primary:active { background: #2A2422; border-color: #2A2422; }
+    .btn--primary:focus-visible { outline-color: var(--gold-deep); }
+
+    @keyframes sheen {
+      0% { transform: translateX(-100%); }
+      30%, 100% { transform: translateX(100%); }
+    }
+
+    /* ---------- Seções ---------- */
+    .section { margin-top: 44px; }
+    .section-title {
+      text-align: center;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 26px;
+      margin: 0 0 4px;
+    }
+    .section-kicker {
+      text-align: center;
+      margin: 0 0 18px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      color: var(--gold-deep);
+    }
+
+    .chips {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      background: var(--blush);
+      color: var(--ink);
+      border: 1px solid rgba(201, 163, 155, .45);
+    }
+    .chip::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    /* Accordion */
+    .faq {
+      display: grid;
+      gap: 10px;
+    }
+    .faq-item {
+      background: #fff;
+      border: 1px solid rgba(201, 163, 155, .35);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: border-color .25s var(--ease), box-shadow .25s var(--ease);
+    }
+    .faq-item.is-open { border-color: var(--rose); box-shadow: var(--shadow-md); }
+    .faq-q { margin: 0; font: inherit; }
+    .faq-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 17px 18px;
+      background: none;
+      border: 0;
+      border-radius: var(--radius);
+      text-align: left;
+      font: 500 15px/1.4 var(--sans);
+      color: var(--ink);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .faq-btn:focus-visible { outline-offset: -3px; }
+    .faq-sign {
+      flex: none;
+      position: relative;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--blush);
+    }
+    .faq-sign::before, .faq-sign::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 10px;
+      height: 1.5px;
+      background: var(--rose-deep);
+      transform: translate(-50%, -50%);
+      transition: transform .3s var(--ease);
+    }
+    .faq-sign::after { transform: translate(-50%, -50%) rotate(90deg); }
+    .faq-item.is-open .faq-sign::after { transform: translate(-50%, -50%) rotate(0deg); }
+
+    .faq-panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .35s var(--ease);
+    }
+    .faq-item.is-open .faq-panel { grid-template-rows: 1fr; }
+    .faq-panel > div { overflow: hidden; }
+    .faq-panel p {
+      margin: 0;
+      padding: 0 18px 18px;
+      color: var(--ink-soft);
+      font-size: 14.5px;
+    }
+
+    .notice {
+      margin: 16px 4px 0;
+      text-align: center;
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+
+    /* ---------- Footer ---------- */
+    .footer {
+      margin-top: 52px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--ink-soft);
+    }
+    .footer p { margin: 0; }
+    .footer .brand {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .footer .place {
+      margin-top: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer .place svg { width: 14px; height: 14px; color: var(--rose-deep); }
+
+    /* ---------- Animação de entrada ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    .is-ready .reveal {
+      animation: rise .7s var(--ease) forwards;
+      animation-delay: calc(var(--i, 0) * 70ms + 80ms);
+    }
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Sem JS, tudo aparece normalmente */
+    .no-js .reveal { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+      .btn--primary::after { display: none; }
+    }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+
+    @media (min-width: 600px) {
+      .page { padding-top: 72px; }
+      .name { font-size: 38px; }
+    }
+  </style>
+</head>
+<body class="no-js">
+  <script>
+    /* =========================================================
+       CONFIGURAÇÃO — edite aqui
+       ========================================================= */
+    const CONFIG = {
+      nome: "Luiza de Castro",
+      instagramHandle: "@luizadecastroadv",
+      instagram: "https://www.instagram.com/luizadecastroadv/",
+      whatsapp: "5581985080807",
+      mensagemWhatsapp: "Olá, Luiza! Vim pelo Instagram e gostaria de tirar uma dúvida.",
+
+      // ---- Opcionais: preencha quando tiver ----
+      // email vazio      → botão de e-mail fica oculto
+      // agendamento vazio → botão abre o WhatsApp com mensagem de agendamento
+      // oab vazio        → rodapé mostra apenas "OAB/PE"
+      email: "",
+      agendamento: "",
+      oab: "",
+
+      // Conteúdos informativos: por padrão apontam para o perfil.
+      // Troque pelo link do post/destaque específico quando tiver.
+      guias: {
+        rescisao: "https://www.instagram.com/luizadecastroadv/",
+        pejotizacao: "https://www.instagram.com/luizadecastroadv/",
+        golpes: "https://www.instagram.com/luizadecastroadv/",
+      },
+    };
+  </script>
+
+  <main class="page" id="conteudo">
+    <!-- Header -->
+    <header class="header">
+      <div class="avatar reveal" style="--i:0" id="avatar">
+        <span class="frame"><img src="foto.jpg" alt="Foto de Luiza de Castro, advogada trabalhista" width="116" height="116" /></span>
+        <span class="monogram" aria-hidden="true">LC</span>
+      </div>
+
+      <h1 class="name reveal" style="--i:1">Luiza de <span class="script">Castro</span></h1>
+      <p class="role reveal" style="--i:2">Advogada Trabalhista · OAB/PE</p>
+
+      <div class="divider reveal" style="--i:3" aria-hidden="true">
+        <svg viewBox="0 0 10 10"><path d="M5 0 L10 5 L5 10 L0 5 Z" fill="currentColor"/></svg>
+      </div>
+
+      <p class="tagline reveal" style="--i:3">Te ajudo com a sua demanda jurídica 🤍</p>
+      <p class="credential reveal" style="--i:4">Pós-graduanda em Direito e Processo do Trabalho (PUC-RS)</p>
+    </header>
+
+    <!-- Links -->
+    <nav aria-label="Links principais">
+      <ul class="links">
+        <li class="reveal" style="--i:5">
+          <a class="btn btn--primary" data-link="whatsapp" target="_blank" rel="noopener noreferrer"
+             aria-label="Fale comigo no WhatsApp (abre em nova aba)">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.27.49 1.7.63.72.22 1.37.19 1.88.12.57-.09 1.75-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.56.94.95-3.47-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.23-9.43 9.44-9.43 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.24 9.43-9.45 9.43m8.03-17.46A11.27 11.27 0 0 0 12.05.72C5.79.72.7 5.8.7 12.06c0 2 .52 3.95 1.52 5.67L.6 23.6l6-1.57a11.33 11.33 0 0 0 5.44 1.39h.01c6.25 0 11.35-5.09 11.35-11.35 0-3.03-1.18-5.88-3.32-8.02"/></svg>
+            </span>
+            <span class="label">Fale comigo no WhatsApp
+              <span class="sub">Atendimento e orientação inicial</span>
+            </span>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </li>
+
+        <li class="reveal" style="--i:6">
+          <a class="btn" data-link="agendamento" target="_blank" rel="noopener noreferrer"
+             aria-label="Agendar uma consulta (abre em nova aba)">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17M9 14.5l2 2 4-4"/></svg>
+            </span>
+            <span class="label">Agendar uma consulta</span>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </li>
+
+        <li class="reveal" style="--i:7">
+          <a class="btn" data-link="duvidas" target="_blank" rel="noopener noreferrer"
+             aria-label="Tire suas dúvidas trabalhistas pelo WhatsApp (abre em nova aba)">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.6 7.14L4 20l.9-4.1A8 8 0 1 1 20 12Z"/><path d="M9.7 9.5a2.4 2.4 0 0 1 4.6.9c0 1.6-2.3 2-2.3 3.2M12 16.3h.01"/></svg>
+            </span>
+            <span class="label">Tire suas dúvidas trabalhistas</span>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </li>
+
+        <li class="reveal" style="--i:8">
+          <a class="btn" data-link="rescisao" target="_blank" rel="noopener noreferrer"
+             aria-label="Fui demitido ou demitida, e agora? Guia de rescisão (abre em nova aba)">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8Z"/><path d="M14 3.5V8h4.5M9 12.5h6M9 16h4"/></svg>
+            </span>
+            <span class="label">Fui demitido(a): e agora?
+              <span class="sub">Guia de rescisão</span>
+            </span>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </li>
+
+        <li class="reveal" style="--i:9">
+          <a class="btn" data-link="pejotizacao" target="_blank" rel="noopener noreferrer"
+             aria-label="Sou PJ, mas trabalho como CLT? (abre em nova aba)">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="7.5" width="17" height="12.5" rx="2.5"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3.5 13h17M12 12v2"/></svg>
+            </span>
+            <span class="label">Sou PJ, mas trabalho como CLT?</span>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </li>
+
+        <li class="reveal" style="--i:10">
+          <a class="btn" data-link="golpes" target="_blank" rel="noopener noreferrer"
+             aria-label="Alerta de golpes: como se proteger (abre em nova aba)">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v5.5c0 4.5 3.2 8.3 7.5 9.5 4.3-1.2 7.5-5 7.5-9.5V6Z"/><path d="M12 8.5v4.5M12 16h.01"/></svg>
+            </span>
+            <span class="label">Alerta de golpes: como se proteger</span>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </li>
+
+        <li class="reveal" style="--i:11">
+          <a class="btn" data-link="instagram" target="_blank" rel="noopener noreferrer"
+             aria-label="Instagram @luizadecastroadv (abre em nova aba)">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.2 6.8h.01"/></svg>
+            </span>
+            <span class="label">Instagram
+              <span class="sub" data-text="instagramHandle">@luizadecastroadv</span>
+            </span>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </li>
+
+        <li class="reveal" style="--i:12">
+          <a class="btn" data-link="email" aria-label="Enviar e-mail profissional">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+            </span>
+            <span class="label">E-mail profissional</span>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Áreas de atuação -->
+    <section class="section" aria-labelledby="areas-title">
+      <p class="section-kicker reveal" style="--i:13">Como posso orientar você</p>
+      <h2 class="section-title reveal" style="--i:13" id="areas-title">Áreas de atuação</h2>
+      <ul class="chips reveal" style="--i:14">
+        <li class="chip">Rescisão</li>
+        <li class="chip">Horas extras</li>
+        <li class="chip">Vínculo empregatício (PJ)</li>
+        <li class="chip">Assédio no trabalho</li>
+        <li class="chip">Verbas trabalhistas</li>
+      </ul>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" aria-labelledby="faq-title">
+      <p class="section-kicker reveal" style="--i:15">Informação que esclarece</p>
+      <h2 class="section-title reveal" style="--i:15" id="faq-title">Dúvidas frequentes</h2>
+
+      <div class="faq reveal" style="--i:16">
+        <div class="faq-item">
+          <h3 class="faq-q">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-1" id="faq-1-btn">
+              Qual o prazo para entrar com ação trabalhista?
+              <span class="faq-sign" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-panel" id="faq-1" role="region" aria-labelledby="faq-1-btn">
+            <div><p>Até 2 anos após o fim do contrato, cobrando os direitos referentes aos últimos 5 anos trabalhados.</p></div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-q">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-2" id="faq-2-btn">
+              Sou PJ, mas cumpro horário e recebo ordens. Tenho direitos?
+              <span class="faq-sign" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-panel" id="faq-2" role="region" aria-labelledby="faq-2-btn">
+            <div><p>Pode ser. Quando há subordinação, habitualidade, pessoalidade e salário, é possível discutir o reconhecimento do vínculo de emprego. Cada situação precisa ser analisada individualmente.</p></div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-q">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq-3" id="faq-3-btn">
+              Em quanto tempo a empresa deve pagar a rescisão?
+              <span class="faq-sign" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-panel" id="faq-3" role="region" aria-labelledby="faq-3-btn">
+            <div><p>Em até 10 dias corridos após o término do contrato. O atraso pode gerar multa em favor do trabalhador, no valor de um salário.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="notice reveal" style="--i:17">Conteúdo de caráter informativo. Cada caso deve ser avaliado individualmente.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer reveal" style="--i:18">
+      <p class="brand">Luiza de Castro</p>
+      <p>Advocacia Trabalhista · OAB/PE<span id="oab-num" hidden> nº <span data-text="oab"></span></span></p>
+      <p class="place">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.7-6.5-11a6.5 6.5 0 0 1 13 0c0 5.3-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>
+        Atendimento online e presencial em Recife/PE
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      const c = CONFIG;
+      const wa = (msg) => `https://wa.me/${c.whatsapp}?text=${encodeURIComponent(msg)}`;
+
+      const hrefs = {
+        whatsapp: wa(c.mensagemWhatsapp),
+        duvidas: wa("Olá, Luiza! Vim pelo Instagram e gostaria de esclarecer uma dúvida trabalhista."),
+        agendamento: c.agendamento || wa("Olá, Luiza! Vim pelo Instagram e gostaria de agendar uma consulta."),
+        rescisao: c.guias.rescisao,
+        pejotizacao: c.guias.pejotizacao,
+        golpes: c.guias.golpes,
+        instagram: c.instagram,
+        email: c.email ? `mailto:${c.email}` : "",
+      };
+
+      // Itens sem dados: e-mail some; número da OAB só aparece se preenchido
+      if (!c.email) document.querySelector('[data-link="email"]').closest("li").remove();
+      if (c.oab) document.getElementById("oab-num").hidden = false;
+
+      document.querySelectorAll("[data-link]").forEach((el) => {
+        const h = hrefs[el.dataset.link];
+        if (h) el.href = h;
+      });
+      document.querySelectorAll("[data-text]").forEach((el) => {
+        const v = c[el.dataset.text];
+        if (v) el.textContent = v;
+      });
+
+      // Fallback da foto: monograma "LC"
+      const avatar = document.getElementById("avatar");
+      const img = avatar.querySelector("img");
+      const noPhoto = () => avatar.classList.add("no-photo");
+      if (img.complete && img.naturalWidth === 0) noPhoto();
+      img.addEventListener("error", noPhoto);
+
+      // Accordion (um aberto por vez)
+      const items = document.querySelectorAll(".faq-item");
+      items.forEach((item) => {
+        const btn = item.querySelector(".faq-btn");
+        btn.addEventListener("click", () => {
+          const open = btn.getAttribute("aria-expanded") === "true";
+          items.forEach((other) => {
+            other.classList.remove("is-open");
+            other.querySelector(".faq-btn").setAttribute("aria-expanded", "false");
+          });
+          if (!open) {
+            item.classList.add("is-open");
+            btn.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+
+      // Animação de entrada
+      document.body.classList.remove("no-js");
+      requestAnimationFrame(() => document.body.classList.add("is-ready"));
+    })();
+  </script>
+</body>
+</html>
