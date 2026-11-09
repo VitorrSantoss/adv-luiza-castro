@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { profile } from '../config/profile';
+import { profile, type LinkItem, type PopupContent } from '../config/profile';
 import { fadeUp } from '../lib/motion';
+import InfoPopup from './InfoPopup';
 import LinkButton from './LinkButton';
 import PrimaryCTA from './PrimaryCTA';
 
@@ -9,19 +11,28 @@ interface LinkListProps {
 }
 
 export default function LinkList({ onOpenEmail }: LinkListProps) {
+  const [popup, setPopup] = useState<PopupContent | null>(null);
+
+  const clickHandler = (item: LinkItem) => {
+    if (item.action === 'open-email') return onOpenEmail;
+    if (item.action === 'open-popup' && item.popup) {
+      const content = item.popup;
+      return () => setPopup(content);
+    }
+    return undefined;
+  };
+
   return (
     <nav aria-label={profile.linksNavLabel}>
       <ul className="links">
         <PrimaryCTA />
         {profile.links.map((item) => (
           <motion.li key={item.id} variants={fadeUp}>
-            <LinkButton
-              item={item}
-              onClick={item.action === 'open-email' ? onOpenEmail : undefined}
-            />
+            <LinkButton item={item} onClick={clickHandler(item)} />
           </motion.li>
         ))}
       </ul>
+      <InfoPopup content={popup} onClose={() => setPopup(null)} />
     </nav>
   );
 }

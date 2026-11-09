@@ -33,7 +33,19 @@ export interface LinkItem {
   /** URL externa. Links http(s) abrem em nova aba. */
   href?: string;
   /** Ação interna (sem sair da página) */
-  action?: 'open-email';
+  action?: 'open-email' | 'open-popup';
+  /** Conteúdo do pop-up (usado com action: 'open-popup') */
+  popup?: PopupContent;
+}
+
+export interface PopupContent {
+  title: string;
+  /** Parágrafos exibidos em ordem */
+  paragraphs: string[];
+  /** Tópicos em destaque, exibidos após o primeiro parágrafo (opcional) */
+  points?: string[];
+  /** Botão de WhatsApp no rodapé do pop-up */
+  cta: { label: string; message: string; url: string };
 }
 
 export interface FaqItem {
@@ -104,6 +116,8 @@ export interface Profile {
   backLabel: string;
   linksNavLabel: string;
   links: LinkItem[];
+  /** Rótulo acessível do botão de fechar os pop-ups */
+  popupCloseLabel: string;
   practiceAreas: { kicker: string; title: string; items: string[] };
   faq: { kicker: string; title: string; items: FaqItem[]; disclaimer: string };
   contact: ContactConfig;
@@ -135,6 +149,13 @@ const OAB_NUMBER = 'XXXXX';
 /** Monta o link do WhatsApp com mensagem pré-preenchida */
 const whatsappLink = (message: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+/** Botão de WhatsApp exibido no rodapé dos pop-ups */
+const popupCta = (message: string) => ({
+  label: 'Falar sobre o meu caso',
+  message,
+  url: whatsappLink(message),
+});
 
 const DEFAULT_WHATSAPP_MESSAGE =
   'Olá, Luiza! Vim pelo Instagram e gostaria de tirar uma dúvida.';
@@ -178,6 +199,8 @@ export const profile: Profile = {
 
   linksNavLabel: 'Links principais',
 
+  popupCloseLabel: 'Fechar',
+
   links: [
     {
       id: 'agendamento',
@@ -200,19 +223,63 @@ export const profile: Profile = {
       label: 'Fui demitido(a): e agora?',
       description: 'Guia de rescisão',
       icon: 'document',
-      href: INSTAGRAM_URL, // TODO: link do post/destaque específico
+      action: 'open-popup',
+      popup: {
+        title: 'Fui demitido(a): e agora?',
+        paragraphs: [
+          'A demissão costuma trazer muitas dúvidas sobre seus direitos e os valores que você deve receber. Alguns pontos merecem atenção:',
+          'Antes de assinar documentos ou aceitar valores, confira se tudo está sendo pago corretamente. Uma análise jurídica ajuda você a entender seus direitos e a identificar possíveis irregularidades.',
+        ],
+        points: [
+          'Verbas rescisórias',
+          'Aviso-prévio',
+          'Férias',
+          '13º salário',
+          'FGTS',
+          'Seguro-desemprego',
+        ],
+        cta: popupCta(
+          'Olá, Luiza! Vim pelo Instagram e gostaria de conferir os valores da minha rescisão.',
+        ),
+      },
     },
     {
       id: 'pejotizacao',
       label: 'Sou PJ, mas trabalho como CLT?',
       icon: 'briefcase',
-      href: INSTAGRAM_URL, // TODO: link do post/destaque específico
+      action: 'open-popup',
+      popup: {
+        title: 'Sou PJ, mas trabalho como CLT?',
+        paragraphs: [
+          'Ter um CNPJ não significa, necessariamente, que você é um trabalhador autônomo. Se, na prática, você cumpre horários, recebe ordens, presta o serviço pessoalmente e está subordinado à empresa, pode existir uma relação de emprego disfarçada de contratação PJ.',
+          'O que importa não é apenas o contrato assinado, mas a forma como o trabalho é exercido, por isso cada situação precisa ser analisada individualmente. Conhecer seus direitos é o primeiro passo para identificar uma possível pejotização irregular.',
+        ],
+        cta: popupCta(
+          'Olá, Luiza! Vim pelo Instagram. Sou PJ, mas trabalho como CLT e gostaria de entender meus direitos.',
+        ),
+      },
     },
     {
       id: 'golpes',
-      label: 'Alerta de golpes: como se proteger',
+      label: 'Alerta de golpes: como se proteger?',
       icon: 'shield',
-      href: INSTAGRAM_URL, // TODO: link do post/destaque específico
+      action: 'open-popup',
+      popup: {
+        title: 'Alerta de golpes: como se proteger?',
+        paragraphs: [
+          'Golpes financeiros e digitais estão cada vez mais comuns, e qualquer pessoa pode ser vítima. Desconfie de:',
+          'Antes de qualquer pagamento, confirme a identidade de quem está pedindo e use canais oficiais. Se você já foi vítima, reúna comprovantes, conversas e demais registros, avise seu banco e procure orientação jurídica para avaliar as medidas cabíveis.',
+        ],
+        points: [
+          'Contatos inesperados',
+          'Links suspeitos',
+          'Pedidos de transferência urgente',
+          'Solicitações de dados pessoais ou bancários',
+        ],
+        cta: popupCta(
+          'Olá, Luiza! Vim pelo Instagram e gostaria de orientação sobre um golpe.',
+        ),
+      },
     },
     {
       id: 'instagram',

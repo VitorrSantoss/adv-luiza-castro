@@ -565,6 +565,115 @@ textarea.input { min-height: 128px; resize: vertical; }
   .pill-link:hover { background: #2A2422; transform: translateY(-1px); }
 }
 
+/* Pop-ups informativos (links "Fui demitido(a)", "Sou PJ", "Golpes") */
+body.no-scroll { overflow: hidden; }
+
+.popup {
+  width: min(440px, calc(100% - 32px));
+  max-height: calc(100dvh - 48px);
+  margin: auto;
+  padding: 0;
+  border: none;
+  border-radius: 24px;
+  background: transparent;
+  color: var(--ink);
+  overflow: visible;
+}
+.popup::backdrop {
+  background: rgba(26, 26, 26, .45);
+  backdrop-filter: blur(3px);
+}
+.popup[open] { animation: popup-in .35s var(--ease); }
+.popup[open]::backdrop { animation: fade-in .35s var(--ease); }
+
+.popup-card {
+  position: relative;
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+  padding: 30px 24px 24px;
+  border-radius: 24px;
+  background: var(--offwhite);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-md);
+}
+.popup-title {
+  margin: 0 36px 14px 0;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1.15;
+}
+.popup-body p {
+  margin: 0 0 12px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.popup-points {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.popup-points li {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--blush);
+  color: var(--rose-deep);
+  font-size: 12.5px;
+  font-weight: 500;
+}
+.popup-cta {
+  margin-top: 6px;
+  width: 100%;
+  justify-content: center;
+  padding: 12px 16px;
+  font-size: 14px;
+}
+
+.popup-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: var(--blush);
+  cursor: pointer;
+  transition: background-color .25s var(--ease);
+}
+.popup-close span::before,
+.popup-close span::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 1.6px;
+  border-radius: 2px;
+  background: var(--rose-deep);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.popup-close span::after { transform: translate(-50%, -50%) rotate(-45deg); }
+@media (hover: hover) {
+  .popup-close:hover { background: #EFD9D4; }
+}
+
+@keyframes popup-in {
+  from { opacity: 0; transform: translateY(14px) scale(.98); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .popup[open], .popup[open]::backdrop { animation: none; }
+}
+
 .form-alt {
   margin: 16px 4px 0;
   text-align: center;
