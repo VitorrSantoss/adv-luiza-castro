@@ -21,19 +21,16 @@ export type IconName =
   | 'instagram'
   | 'mail';
 
-/** Visões da página: lista de links ou formulário de e-mail (#email na URL) */
-export type ViewId = 'links' | 'email';
-
 export interface LinkItem {
   id: string;
   label: string;
   /** Linha de apoio, opcional, exibida abaixo do label */
   description?: string;
   icon: IconName;
-  /** URL externa. Links http(s) abrem em nova aba. */
+  /** URL externa (http(s) abre em nova aba; mailto: abre o app de e-mail) */
   href?: string;
   /** Ação interna (sem sair da página) */
-  action?: 'open-email' | 'open-popup';
+  action?: 'open-popup';
   /** Conteúdo do pop-up (usado com action: 'open-popup') */
   popup?: PopupContent;
 }
@@ -53,53 +50,6 @@ export interface FaqItem {
   answer: string;
 }
 
-export interface FieldText {
-  label: string;
-  placeholder?: string;
-  /** Ex.: "(opcional)" */
-  hint?: string;
-}
-
-export interface ContactConfig {
-  /** E-mail exibido no link "mailto" abaixo do formulário */
-  email: string;
-  /** ID do formulário no Formspree (ex.: "xyzabcd") */
-  formspreeId: string;
-  /** Montado automaticamente a partir do formspreeId */
-  endpoint: string;
-  title: string;
-  subtitle: string;
-  fields: {
-    name: FieldText;
-    email: FieldText;
-    phone: FieldText;
-    subject: FieldText;
-    message: FieldText;
-    consent: FieldText;
-    honeypot: FieldText;
-  };
-  subjects: string[];
-  messageMinLength: number;
-  /** Assunto do e-mail que chega na sua caixa (o assunto escolhido é adicionado ao final) */
-  emailSubjectPrefix: string;
-  submitLabel: string;
-  sendingLabel: string;
-  successMessage: string;
-  errorMessage: string;
-  errorWhatsappLabel: string;
-  directContactText: string;
-  validation: {
-    nameRequired: string;
-    emailRequired: string;
-    emailInvalid: string;
-    phoneInvalid: string;
-    subjectRequired: string;
-    messageRequired: string;
-    messageMin: string;
-    consentRequired: string;
-  };
-}
-
 export interface Profile {
   name: string;
   /** Única palavra da página em Pinyon Script (precisa fazer parte do nome) */
@@ -112,15 +62,14 @@ export interface Profile {
   whatsapp: { number: string; defaultMessage: string; url: string };
   instagram: { url: string; handle: string };
   primaryCta: LinkItem;
-  /** Link "voltar" exibido acima do formulário de e-mail */
-  backLabel: string;
   linksNavLabel: string;
   links: LinkItem[];
   /** Rótulo acessível do botão de fechar os pop-ups */
   popupCloseLabel: string;
   practiceAreas: { kicker: string; title: string; items: string[] };
   faq: { kicker: string; title: string; items: FaqItem[]; disclaimer: string };
-  contact: ContactConfig;
+  /** E-mail aberto pelo botão "Enviar um e-mail" */
+  email: string;
   footer: { brand: string; line: string; location: string };
   a11y: {
     /** Anexado ao aria-label de links que abrem em nova aba */
@@ -137,11 +86,7 @@ const WHATSAPP_NUMBER = '5581985080807';
 const INSTAGRAM_URL = 'https://www.instagram.com/luizadecastroadv/';
 const INSTAGRAM_HANDLE = '@luizadecastroadv';
 
-// TODO: e-mail profissional definitivo
-const CONTACT_EMAIL = 'contato@exemplo.com';
-
-// TODO: cole aqui o ID do formulário criado em https://formspree.io (ver README)
-const FORMSPREE_ID = 'SEU_ID_AQUI';
+const CONTACT_EMAIL = 'luizadecastro.adv@gmail.com';
 
 // TODO: número de inscrição na OAB/PE
 const OAB_NUMBER = 'XXXXX';
@@ -194,8 +139,6 @@ export const profile: Profile = {
     icon: 'whatsapp',
     href: whatsappLink(DEFAULT_WHATSAPP_MESSAGE),
   },
-
-  backLabel: 'Voltar aos links',
 
   linksNavLabel: 'Links principais',
 
@@ -291,8 +234,9 @@ export const profile: Profile = {
     {
       id: 'email',
       label: 'Enviar um e-mail',
+      description: CONTACT_EMAIL,
       icon: 'mail',
-      action: 'open-email',
+      href: `mailto:${CONTACT_EMAIL}`,
     },
   ],
 
@@ -332,57 +276,7 @@ export const profile: Profile = {
       'Conteúdo de caráter informativo. Cada caso deve ser avaliado individualmente.',
   },
 
-  contact: {
-    email: CONTACT_EMAIL,
-    formspreeId: FORMSPREE_ID,
-    endpoint: `https://formspree.io/f/${FORMSPREE_ID}`,
-    title: 'Envie sua mensagem',
-    subtitle: 'Conte brevemente sua situação que eu retorno o contato.',
-    fields: {
-      name: { label: 'Nome', placeholder: 'Seu nome completo' },
-      email: { label: 'E-mail', placeholder: 'voce@email.com' },
-      phone: {
-        label: 'Telefone/WhatsApp',
-        placeholder: '(81) 99999-9999',
-        hint: '(opcional)',
-      },
-      subject: { label: 'Assunto', placeholder: 'Selecione um assunto' },
-      message: {
-        label: 'Mensagem',
-        placeholder: 'Descreva brevemente a sua situação',
-      },
-      consent: {
-        label: 'Autorizo o uso dos meus dados apenas para retorno deste contato.',
-      },
-      honeypot: { label: 'Não preencha este campo' },
-    },
-    subjects: [
-      'Rescisão',
-      'Horas extras',
-      'Vínculo PJ/CLT',
-      'Assédio no trabalho',
-      'Outro',
-    ],
-    messageMinLength: 20,
-    emailSubjectPrefix: 'Contato pelo site:',
-    submitLabel: 'Enviar mensagem',
-    sendingLabel: 'Enviando…',
-    successMessage: 'Mensagem enviada! Retorno em breve.',
-    errorMessage:
-      'Não foi possível enviar sua mensagem agora. Tente novamente em instantes ou fale comigo pelo WhatsApp.',
-    errorWhatsappLabel: 'Chamar no WhatsApp',
-    directContactText: 'Prefere falar direto? Envie para',
-    validation: {
-      nameRequired: 'Informe seu nome.',
-      emailRequired: 'Informe seu e-mail.',
-      emailInvalid: 'Informe um e-mail válido.',
-      phoneInvalid: 'Informe um telefone com DDD, ex.: (81) 99999-9999.',
-      subjectRequired: 'Selecione um assunto.',
-      messageRequired: 'Escreva sua mensagem.',
-      messageMin: 'Escreva pelo menos 20 caracteres.',
-      consentRequired: 'É preciso autorizar o uso dos dados para que eu possa retornar.',
-    },
-  },
+  email: CONTACT_EMAIL,
 
   footer: {
     brand: NAME,

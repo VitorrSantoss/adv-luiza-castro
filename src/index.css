@@ -155,31 +155,6 @@ a { color: inherit; }
 
 .content { margin-top: 32px; }
 
-/* Link "Voltar aos links" acima do formulário */
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin: 0 0 18px;
-  padding: 4px 2px;
-  border: 0;
-  background: none;
-  font: 500 13px/1.2 var(--sans);
-  color: var(--rose-deep);
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-.back-link svg {
-  width: 16px;
-  height: 16px;
-  transition: transform .25s var(--ease);
-}
-@media (hover: hover) {
-  .back-link:hover { color: var(--ink); }
-  .back-link:hover svg { transform: translateX(-3px); }
-}
-.section-title:focus { outline: none; }
-
 /* ---------- Links ---------- */
 .links {
   list-style: none;
@@ -427,126 +402,6 @@ button.btn--primary { color: var(--offwhite); }
   color: var(--ink-soft);
 }
 
-/* ---------- Formulário (mesma linguagem visual dos cartões) ---------- */
-.contact-sub {
-  margin: 4px 0 20px;
-  text-align: center;
-  font-size: 14px;
-  color: var(--ink-soft);
-}
-
-.form-card {
-  position: relative;
-  display: grid;
-  gap: 18px;
-  padding: 22px 18px;
-  background: #fff;
-  border: 1px solid rgba(201, 163, 155, .35);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-}
-
-.field-label {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink);
-}
-.field-label .hint { margin-left: 4px; font-weight: 400; color: var(--ink-soft); }
-
-.input {
-  display: block;
-  width: 100%;
-  padding: 12px 14px;
-  font: 400 15px/1.4 var(--sans);
-  color: var(--ink);
-  background: var(--offwhite);
-  border: 1px solid var(--rose);
-  border-radius: 12px;
-  appearance: none;
-  -webkit-appearance: none;
-  transition: border-color .25s var(--ease), box-shadow .25s var(--ease);
-}
-.input::placeholder { color: rgba(74, 66, 64, .6); }
-.input:focus,
-.input:focus-visible {
-  outline: none;
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(184, 149, 106, .28);
-}
-.input[aria-invalid="true"] { border-color: var(--danger); }
-textarea.input { min-height: 128px; resize: vertical; }
-
-.select-wrap { position: relative; }
-.select-wrap .input { padding-right: 42px; }
-.select-wrap svg {
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  width: 16px;
-  height: 16px;
-  transform: translateY(-50%);
-  color: var(--gold);
-  pointer-events: none;
-}
-
-.field-error {
-  margin: 0;
-  padding-top: 6px;
-  font-size: 12.5px;
-  color: var(--danger);
-}
-
-.consent {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 13px;
-  line-height: 1.45;
-  cursor: pointer;
-}
-.consent input {
-  flex: none;
-  width: 18px;
-  height: 18px;
-  margin-top: 1px;
-  accent-color: var(--rose-deep);
-  cursor: pointer;
-}
-
-.honeypot {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
-.form-status {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin: 0;
-  padding: 12px 14px;
-  border-radius: 14px;
-  background: var(--blush);
-  border: 1px solid rgba(201, 163, 155, .45);
-  font-size: 14px;
-  font-weight: 500;
-  text-align: center;
-}
-.form-status svg { flex: none; width: 18px; height: 18px; color: var(--gold-deep); }
-.form-status--error {
-  display: grid;
-  justify-items: center;
-  gap: 12px;
-  color: var(--danger);
-  font-weight: 400;
-}
-.form-status--error svg { color: var(--danger); }
-
 .pill-link {
   display: inline-flex;
   align-items: center;
@@ -674,23 +529,6 @@ body.no-scroll { overflow: hidden; }
   .popup[open], .popup[open]::backdrop { animation: none; }
 }
 
-.form-alt {
-  margin: 16px 4px 0;
-  text-align: center;
-  font-size: 12.5px;
-  color: var(--ink-soft);
-}
-.form-alt a {
-  color: var(--rose-deep);
-  font-weight: 500;
-  text-decoration: underline;
-  text-decoration-color: var(--line);
-  text-underline-offset: 3px;
-}
-
-.spin { animation: spin 1s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
 /* ---------- Footer ---------- */
 .footer {
   margin-top: 52px;
@@ -723,7 +561,6 @@ body.no-scroll { overflow: hidden; }
     transition-duration: .001ms !important;
   }
   .btn--primary::after { display: none; }
-  .spin { animation: none; }
 }
 
 @media (min-width: 600px) {

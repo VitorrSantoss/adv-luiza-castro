@@ -6,15 +6,10 @@ import InfoPopup from './InfoPopup';
 import LinkButton from './LinkButton';
 import PrimaryCTA from './PrimaryCTA';
 
-interface LinkListProps {
-  onOpenEmail: () => void;
-}
-
-export default function LinkList({ onOpenEmail }: LinkListProps) {
+export default function LinkList() {
   const [popup, setPopup] = useState<PopupContent | null>(null);
 
   const clickHandler = (item: LinkItem) => {
-    if (item.action === 'open-email') return onOpenEmail;
     if (item.action === 'open-popup' && item.popup) {
       const content = item.popup;
       return () => setPopup(content);
