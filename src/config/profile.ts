@@ -89,7 +89,7 @@ const INSTAGRAM_HANDLE = '@luizadecastroadv';
 const CONTACT_EMAIL = 'luizadecastro.adv@gmail.com';
 
 // TODO: número de inscrição na OAB/PE
-const OAB_NUMBER = 'XXXXX';
+const OAB_NUMBER = '71.719';
 
 /** Monta o link do WhatsApp com mensagem pré-preenchida */
 const whatsappLink = (message: string) =>
